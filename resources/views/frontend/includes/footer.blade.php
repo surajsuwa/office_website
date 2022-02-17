@@ -1,29 +1,6 @@
-{{-- chat --}}
-<section class="section edge top-left chat_section">
-    <div class="container pt-5">
-
-        <div class="d-flex align-items-center flex-column aos-init aos-animate" data-aos="zoom-in">
-            <div class="text-center text-md-start d-flex align-items-center flex-column">
-                <div class="icon-chat">
-                    <a href="">
-                        <img src="assets/images/chat/icon-chat.png" class="img-responsive" alt="title">
-                    </a>
-                </div>
-                <p class="light mb-0 text-primary lead">Ready to get started?</p>
-                <h2 class="mt-0 bold">Create an account now</h2>
-            </div>
-            <div class="read-more">
-                <a href="register.html" class="btn btn-primary btn-rounded mt-3 mt-md-0 ms-md-auto">
-                    Chat Now
-                </a>
-            </div>
-        </div>
-    </div>
-</section>
-
 {{-- contact us --}}
 <section id="features_contact" class="section contact_section">
-    <div class="container">
+    <div class="container mt-0 pt-0">
         <div class="section-heading aos-init aos-animate" data-aos="fade-up">
             <div class="row justify-content-center">
                 <div class="col-md-10 col-lg-8 text-center">
@@ -34,8 +11,6 @@
             </div>
         </div>
     </div>
-
-
 
     <div class="map-display aos-init aos-animate" data-aos="zoom-out">
         <iframe
@@ -51,38 +26,18 @@
             <div class="col-xl-12 col-lg-12 p-0">
                 <div class="shadow-box shadow-hover p-3 rounded h-100">
                     <div class="row no-gutters text-center">
+
+                        @foreach ($location as $data)
                         <div class="col-6 col-sm-3 d-flex flex-column ps-0 pe-2">
-                            <h2>Nepal</h2>
-                            <p>Basundhara, ktm</p>
+                            <h2 style="text-transform:uppercase;">{{$data->location_name}}</h2>
+                            <p class="m-0">{{$data->office_name}}</p>
+                            <p class="m-0 ">{{$data->location_name}}</p>
                             <p>
                                 <i class="fas fa-phone me-2"></i>
-                                + 98672384324
+                                {{$data->contact}}
                             </p>
                         </div>
-                        <div class="col-6 col-sm-3 d-flex flex-column ps-0 pe-2">
-                            <h2>Nepal</h2>
-                            <p>Basundhara, ktm</p>
-                            <p>
-                                <i class="fas fa-phone me-2"></i>
-                                + 98672384324
-                            </p>
-                        </div>
-                        <div class="col-6 col-sm-3 d-flex flex-column ps-0 pe-2">
-                            <h2>Nepal</h2>
-                            <p>Basundhara, ktm</p>
-                            <p>
-                                <i class="fas fa-phone me-2"></i>
-                                + 98672384324
-                            </p>
-                        </div>
-                        <div class="col-6 col-sm-3 d-flex flex-column ps-0 pe-2">
-                            <h2>Nepal</h2>
-                            <p>Basundhara, ktm</p>
-                            <p>
-                                <i class="fas fa-phone me-2"></i>
-                                + 98672384324
-                            </p>
-                        </div>
+                        @endforeach
 
                     </div>
                 </div>
@@ -94,37 +49,32 @@
     <div class="container pb-3">
         <div class="row gap-y text-center text-md-start">
             <div class="col-md-4 me-auto">
-                <img src="{{asset('assets/images/logo/utech.png')}}" alt="" class="logo">
+                <img src="{{get_image_path('site',$office_info->site_logo)}}" alt="" class="logo">
+
                 <p>We love the challenge to deliver best possible solution using latest and future technologies....</p>
 
+
                 <nav class="nav flex-column small">
-                    <div class="d-flex align-items-center"><i class="fas fa-map-marker me-2"></i> 123 Street St,
-                        Your City, YC Your Country</div>
-                    <div class="mt-2 d-flex align-items-center"><i class="fas fa-phone me-2"></i> (123) 456-7890
+                    <div class="d-flex align-items-center"><i class="fas fa-map-marker me-2"></i>{{$office_info->address}}</div>
+                    <div class="mt-2 d-flex align-items-center"><i class="fas fa-phone me-2"></i>{{$office_info->phone_number}}
                     </div>
                     <div class="mt-2 d-flex align-items-center"><i class="fas fa-envelope me-2"></i> <a
-                            href="mailto:yourmail@domain.com">yourmail@domain.com</a></div>
+                            href="#">{{$office_info->email_address}}</a></div>
                 </nav>
 
-                <nav class="nav social-icons justify-content-start mt-4"><a href="#"
-                        class="btn text-contrast btn-circle btn-sm brand-facebook me-3"><i
-                            class="fab fa-facebook"></i></a> <a href="#"
-                        class="btn text-contrast btn-circle btn-sm brand-twitter me-3"><i
-                            class="fab fa-twitter"></i></a> <a href="#"
-                        class="btn text-contrast btn-circle btn-sm brand-youtube me-3"><i
-                            class="fab fa-youtube"></i></a> <a href="#"
-                        class="btn text-contrast btn-circle btn-sm brand-pinterest"><i class="fab fa-pinterest"></i></a>
+                <nav class="nav social-icons justify-content-start mt-4">
+
+                    @foreach ($social_sites as $value)
+                        <a href="#" class="btn text-contrast btn-circle btn-sm me-3  brand-{{$value->icon}}"><i class="{{$value->url}}"></i></a>
+                    @endforeach
                 </nav>
             </div>
-
-
 
             <div class="col-md-2">
                 <h6 class="py-2 bold text-uppercase">Quick Links</h6>
                 <nav class="nav flex-column">
                     <a class="nav-item py-2" href="{{route('introduction')}}">About Us</a>
-                    <a class="nav-item py-2" href="{{route('services')}}">Services</a>
-                    <a class="nav-item py-2" href="{{route('contact')}}">Contact Us</a>
+                    <a class="nav-item py-2" href="{{route('contactUs')}}">Contact Us</a>
                     <a class="nav-item py-2" href="{{route('work')}}">Our Work</a>
 
                 </nav>
@@ -135,7 +85,6 @@
                 <nav class="nav flex-column">
                     <a class="nav-item py-2" href="{{route('howWework')}}">How we Work</a>
                     <a class="nav-item py-2" href="{{route('our_activity')}}">Our Activities</a>
-                    <a class="nav-item py-2" href="{{route('blogs')}}">Blogs</a>
                     <a class="nav-item py-2" href="{{route('career')}}">Carrer</a>
                 </nav>
             </div>
@@ -144,11 +93,8 @@
             <div class="col-md-2">
                 <h6 class="py-2 bold text-uppercase">Support</h6>
                 <nav class="nav flex-column">
-                    <a class="nav-item py-2" href="{{route('term_condition')}}">Terms and Condition</a>
-                    <a class="nav-item py-2" href="{{route('error_404')}}">Privacy Policy</a>
+                    <a class="nav-item py-2" href="">Privacy Policy</a>
                     <a class="nav-item py-2" href="{{route('faq')}}">FAQ's</a>
-                    <a class="nav-item py-2" href="{{route('register')}}">Register</a>
-                    <a class="nav-item py-2" href="{{route('login')}}">Login</a>
                 </nav>
             </div>
         </div>

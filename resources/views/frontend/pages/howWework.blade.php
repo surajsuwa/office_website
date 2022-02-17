@@ -12,9 +12,9 @@
                 <div class="col-md-6 section_content">
                     <h1 class="bold display-md-4 text-contrast mb-4" data-aos="fade-up"
                         data-aos-anchor-placement="center-center"> How We Work </h1>
-                    <p class="lead text-contrast">Get in
+                    {{-- <p class="lead text-contrast">Get in
                         touch and let us know how we can help. Fill out the form
-                        and we’ll be in touch as soon as possible.</p>
+                        and we’ll be in touch as soon as possible.</p> --}}
                 </div>
 
 

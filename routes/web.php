@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PageController;
+use App\Http\Controllers\ContactController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,43 +15,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
-
-Route::get('/', function () {
-    return view('frontend/pages/home');
-})->name('home');
-
-
-Route::get('/contact', function () {
-    return view('frontend/pages/contact');
-})->name('contact');
-
-Route::get('/our-activity', function () {
-    return view('frontend/pages/our_activity');
-})->name('our_activity');
-
-Route::get('/work', function () {
-    return view('frontend/pages/work');
-})->name('work');
-
-Route::get('/introduction', function () {
-    return view('frontend/pages/introduction');
-})->name('introduction');
-
-Route::get('/blogs', function () {
-    return view('frontend/pages/blogs');
-})->name('blogs');
 
 Route::get('/faq', function () {
     return view('frontend/pages/faq');
 })->name('faq');
-
-Route::get('/services', function () {
-    return view('frontend/pages/services');
-})->name('services');
 
 Route::get('/how-we-work', function () {
     return view('frontend/pages/howWework');
@@ -59,26 +28,42 @@ Route::get('/career', function () {
     return view('frontend/pages/career');
 })->name('career');
 
-Route::get('/platform', function () {
-    return view('frontend/pages/platformForm');
-})->name('platform');
-
 Route::get('/term_condition', function () {
     return view('frontend/pages/term_condition');
 })->name('term_condition');
 
-Route::get('/register', function () {
-    return view('frontend/pages/register');
-})->name('register');
 
-Route::get('/login', function () {
-    return view('frontend/pages/login');
-})->name('login');
+// -------------------------------------------------------------
+Route::get('/',[PageController::class ,'index'])->name('home');
 
-Route::get('/single-blog-post', function () {
-    return view('frontend/pages/single-blog');
-})->name('single-blog-post');
+// Platform
+Route::get('platform/{id}',[PageController::class,'platform'])->name('platform');
 
-Route::get('/error_404', function () {
+//Services
+Route::get('services/{id}',[PageController::class,'services'])->name('services');
+
+//Contact
+Route::get('contactUs',[PageController::class,'show'])->name('contactUs');
+
+//About Us
+Route::get('introduction',[PageController::class,'introduction'])->name('introduction');
+
+//Inspirations
+Route::get('inspirations',[PageController::class,'inspirations'])->name('inspirations');
+
+//Activities
+Route::get('our_activity',[PageController::class,'activities'])->name('our_activity');
+
+//Work
+Route::get('work',[PageController::class,'work'])->name('work');
+
+//Mailbox
+Route::post('sendmail',[PageController::class,'sendmail'])->name('sendmail');
+
+//falback
+Route::fallback(function() {
     return view('frontend/pages/error');
 })->name('error_404');
+
+
+

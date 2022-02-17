@@ -11,11 +11,27 @@
 
 
 <script>
+
+
     $(window).on('load', function() {
-    /*-------------------------------------
-    jQuery for Isotope initialization
-    -------------------------------------*/
-    var $container = $('#inner-isotope');
+
+        // back to top
+        $(window).scroll(function() {
+            if ($(this).scrollTop()) {
+                $('#toTop').fadeIn();
+            } else {
+                $('#toTop').fadeOut();
+            }
+        });
+
+        $("#toTop").click(function () {
+            $("html, body").animate({scrollTop: 0}, 1000);
+        });
+
+        /*-------------------------------------
+        jQuery for Isotope initialization
+        -------------------------------------*/
+        var $container = $('#inner-isotope');
         if ($container.length > 0) {
             var selector = $container.find('.isotop-classes-tab a.current').attr('data-filter');
             console.log(selector);
@@ -47,9 +63,7 @@
             });
         }
     }); // end window load function
-
 </script>
-
 
 <script>
     jQuery(document).ready(function ($) {
@@ -63,12 +77,8 @@
             stagePadding: 0,
             smartSpeed: 150
         });
-    });
-</script>
 
-<script>
-    jQuery(document).ready(function ($) {
-        $('.business_banner').owlCarousel({
+        $('.profolio_banner').owlCarousel({
             loop: false,
             animateOut: 'fadeOut',
             autoplay: true,
@@ -78,5 +88,13 @@
             stagePadding: 0,
             smartSpeed: 150
         });
+
+        $("#msg_click").click(function() {
+            $(".msg_details").toggleClass("msg_hide_show");
+        });
     });
 </script>
+
+
+
+

@@ -15,7 +15,7 @@
                 <a href="{{route('work')}}" class="st-root-link item-blog st-has-dropdown nav-link"
                     data-dropdown="blog"> WORKS </a>
                 <a class="st-root-link item-aboutus st-has-dropdown nav-link" data-dropdown="aboutus"> ABOUT US </a>
-                <a href="{{route('contact')}}" class="st-root-link item-blog st-has-dropdown nav-link"
+                <a href="{{route('contactUs')}}" class="st-root-link item-blog st-has-dropdown nav-link"
                     data-dropdown="blocks"> CONTACT </a>
 
                 <a href="{{route('career')}}" class="st-root-link item-career st-has-dropdown nav-link"
@@ -32,39 +32,32 @@
                     <div class="st-popup-container">
                         <a class="st-popup-close-button">Close</a>
                         <div class="st-dropdown-content-group">
-                            <h4 class="text-uppercase regular">services</h4>
-                            <a class="regular text-primary" href="about.html"><i class="far fa-building me-2"></i> About
-                            </a><a class="regular text-success" href="contact.html"><i class="far fa-envelope me-2"></i>
-                                Contact </a>
-                            <a class="regular text-warning" href="pricing.html"><i
-                                    class="fas fa-hand-holding-usd me-2"></i> Pricing </a>
-                            <a class="regular text-info" href="faqs.html"><i class="far fa-question-circle me-2"></i>
-                                FAQs</a>
+                            {{-- <h4 class="text-uppercase regular">services</h4> --}}
+                            <a class="regular text-primary" href="/">
+                                <i class="far fa-building me-2"></i>
+                                 Home
+                            </a>
+                            <a class="regular text-primary" href="{{route('introduction')}}">
+                                <i class="far fa-building me-2"></i>
+                                 About Us
+                            </a>
+                            <a class="regular text-primary" href="{{route('work')}}">
+                                <i class="far fa-building me-2"></i>
+                                 Work
+                            </a>
+                            <a class="regular text-success" href="{{route('contactUs')}}">
+                                <i class="far fa-envelope me-2"></i>
+                                Contact
+                            </a>
+                            <a class="regular text-warning" href="">
+                                <i class="fas fa-hand-holding-usd me-2"></i> Career </a>
+
+                            <a class="regular text-info" href="{{route('faq')}}">
+                                <i class="far fa-question-circle me-2"></i>
+                                FAQs
+                            </a>
                         </div>
-                        <div class="st-dropdown-content-group border-top bw-2">
-                            <h4 class="text-uppercase regular">Components</h4>
-                            <div class="row">
-                                <div class="col me-4">
-                                    <a target="_blank" href="components/alert.html">Alerts</a> <a target="_blank"
-                                        href="components/badge.html">Badges</a> <a target="_blank"
-                                        href="components/button.html">Buttons</a>
-                                    <a target="_blank" href="#">Colors</a> <a target="_blank"
-                                        href="components/accordion.html">Accordion</a> <a target="_blank"
-                                        href="components/cookie-law.html">Cookielaw</a>
-                                </div>
-                                <div class="col me-4">
-                                    <a target="_blank" href="components/overlay.html">Overlay</a> <a target="_blank"
-                                        href="components/progress.html">Progress</a> <a target="_blank"
-                                        href="components/lightbox.html">Lightbox</a>
-                                    <a target="_blank" href="components/tab.html">Tabs</a> <a target="_blank"
-                                        href="components/tables.html">Tables</a> <a target="_blank"
-                                        href="components/typography.html">Typography</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="st-dropdown-content-group bg-light b-t">
-                            <a href="login.html">Sign in <i class="fas fa-arrow-right"></i></a>
-                        </div>
+
                     </div>
                 </div>
             </li>
@@ -84,66 +77,25 @@
                     <div class="st-dropdown-content-group">
 
                         <div class="row">
+                            @foreach ($platforms as $data)
+
                             <div class="col-3 nav_container">
-                                <a class="nav_content" href="{{route('platform')}}">
+                                <a class="nav_content" href="{{url('platform/'.$data->id)}}">
                                     <div class="d-flex align-items-center flex-column mb-3">
-                                        <figure class="mockup"><img src="assets/images/platform/5b1a44d5123a6.png"
+                                        <figure class="mockup">
+                                            <img src="{{get_image_path('platform',$data->featured_image)}}"
                                                 class="img-responsive mx-auto" alt="" style="max-height: 180px">
                                         </figure>
                                         <div class="flex-fill">
                                             <p class="m-0 text-secondary text-center">
-                                                Technology Platform
+                                                {{$data->title}}
                                             </p>
                                         </div>
                                     </div>
                                 </a>
-                                <p>Our passion and drive </p>
+                                <p>{!! Str::limit($data->description,30,'...') !!} </p>
                             </div>
-                            <div class="col-3 nav_container">
-                                <a class="nav_content" href="{{route('platform')}}">
-                                    <div class="d-flex align-items-center flex-column mb-3">
-                                        <figure class="mockup"><img src="assets/images/platform/5b1a44d5123a6.png"
-                                                class="img-responsive mx-auto" alt="" style="max-height: 180px">
-                                        </figure>
-                                        <div class="flex-fill">
-                                            <p class="m-0 text-secondary text-center">
-                                                Technology Platform
-                                            </p>
-                                        </div>
-                                    </div>
-                                </a>
-                                <p>Our passion and drive </p>
-                            </div>
-                            <div class="col-3 nav_container">
-                                <a class="nav_content" href="{{route('platform')}}">
-                                    <div class="d-flex align-items-center flex-column mb-3">
-                                        <figure class="mockup"><img src="assets/images/platform/5b1a44d5123a6.png"
-                                                class="img-responsive mx-auto" alt="" style="max-height: 180px">
-                                        </figure>
-                                        <div class="flex-fill">
-                                            <p class="m-0 text-secondary text-center">
-                                                Technology Platform
-                                            </p>
-                                        </div>
-                                    </div>
-                                </a>
-                                <p>Our passion and drive </p>
-                            </div>
-                            <div class="col-3 nav_container">
-                                <a class="nav_content" href="{{route('platform')}}">
-                                    <div class="d-flex align-items-center flex-column mb-3">
-                                        <figure class="mockup"><img src="assets/images/platform/5b1a44d5123a6.png"
-                                                class="img-responsive mx-auto" alt="" style="max-height: 180px">
-                                        </figure>
-                                        <div class="flex-fill">
-                                            <p class="m-0 text-secondary text-center">
-                                                Technology Platform
-                                            </p>
-                                        </div>
-                                    </div>
-                                </a>
-                                <p>Our passion and drive </p>
-                            </div>
+                            @endforeach
 
 
                         </div>
@@ -156,131 +108,49 @@
             <div class="st-dropdown-section" data-dropdown="services">
                 <div class="st-dropdown-content container">
                     <div class="st-dropdown-content-group services_group">
+
                         <div class="row">
-                            <div class="col-3 nav_container">
-                                <a class="nav_content" href="{{route('services')}}">
-                                    <div class="d-flex align-items-center mb-3">
-                                        <figure class="mockup"><img src="assets/images/services/5b1a744a64dc8.png"
-                                                class="img-responsive mx-auto" alt="" style="max-height: 180px">
-                                        </figure>
+                            @foreach ($services_categories as $value)
+                            @if ($loop->index <4)
+                                <div class="col-3 nav_container">
+                                    <a class="nav_content" href="{{url('services/'. $value->category_id)}}">
+                                        {{-- <div class="d-flex align-items-center mb-3 flex-row"> --}}
+                                        <div class="mb-3 ">
+                                            <figure class="mockup">
+                                                <img src="{{get_image_path('serviceCategory',$value->featured_image)}}" class="img-responsive mx-auto" alt="" style="max-height: 180px">
+                                            </figure>
 
-                                        <div class="flex-fill">
-                                            <h3 class="link-title m-0">Mobile App</h3>
-                                            <p class="m-0 text-secondary">Get to know </p>
+                                            <div style="text-align: center;">
+                                                <h3 class="link-title m-0">{{$value->name}}</h3>
+                                                {{-- <p class="m-0 text-secondary">Get to know </p> --}}
+                                            </div>
                                         </div>
-                                    </div>
-                                </a>
-                                <p>Our passion and drive </p>
-                            </div>
-                            <div class="col-3 nav_container">
-                                <a class="nav_content" href="{{route('services')}}">
-                                    <div class="d-flex align-items-center mb-3">
-                                        <figure class="mockup"><img src="assets/images/services/5b1a744a64dc8.png"
-                                                class="img-responsive mx-auto" alt="" style="max-height: 180px">
-                                        </figure>
+                                    </a>
 
-                                        <div class="flex-fill">
-                                            <h3 class="link-title m-0">Web Technology</h3>
-                                            <p class="m-0 text-secondary">Get to know </p>
-                                        </div>
-                                    </div>
-                                </a>
-                                <p>Our passion and drive </p>
-                            </div>
-                            <div class="col-3 nav_container">
-                                <a class="nav_content" href="{{route('services')}}">
-                                    <div class="d-flex align-items-center mb-3">
-                                        <figure class="mockup"><img src="assets/images/services/5b1a744a64dc8.png"
-                                                class="img-responsive mx-auto" alt="" style="max-height: 180px">
-                                        </figure>
-
-                                        <div class="flex-fill">
-                                            <h3 class="link-title m-0">User Centerd</h3>
-                                            <p class="m-0 text-secondary">Get to know </p>
-                                        </div>
-                                    </div>
-                                </a>
-                                <p>Our passion and drive </p>
-                            </div>
-                            <div class="col-3 nav_container">
-                                <a class="nav_content" href="{{route('services')}}">
-                                    <div class="d-flex align-items-center mb-3">
-                                        <figure class="mockup"><img src="assets/images/services/5b1a744a64dc8.png"
-                                                class="img-responsive mx-auto" alt="" style="max-height: 180px">
-                                        </figure>
-
-                                        <div class="flex-fill">
-                                            <h3 class="link-title m-0">Frontend Dev</h3>
-                                            <p class="m-0 text-secondary">Get to know </p>
-                                        </div>
-                                    </div>
-                                </a>
-                                <p>Our passion and drive </p>
-                            </div>
-
+                                </div>
+                                @endif
+                            @endforeach
                         </div>
 
                         <div class="row">
-                            <div class="col-3 nav_container">
-                                <a class="nav_content" href="{{route('services')}}">
-                                    <div class="d-flex align-items-center mb-3">
-                                        <figure class="mockup"><img src="assets/images/services/5b1a744a64dc8.png"
-                                                class="img-responsive mx-auto" alt="" style="max-height: 180px">
-                                        </figure>
+                            @foreach ($services_categories as $value)
+                            @if ($loop->index >=4)
+                                <div class="col-3 nav_container">
+                                    <a class="nav_content" href="{{url('services/'. $value->category_id)}}}">
+                                        <div class="mb-3 ">
+                                            <figure class="mockup">
+                                                <img src="{{get_image_path('serviceCategory',$value->featured_image)}}" class="img-responsive mx-auto" alt="" style="max-height: 180px">
+                                            </figure>
 
-                                        <div class="flex-fill">
-                                            <h3 class="link-title m-0">Quality Assurance</h3>
-                                            <p class="m-0 text-secondary">Get to know </p>
+                                            <div style="text-align: center;">
+                                                <h3 class="link-title m-0">{{$value->name}}</h3>
+                                                {{-- <p class="m-0 text-secondary">Get to know </p> --}}
+                                            </div>
                                         </div>
-                                    </div>
-                                </a>
-                                <p>Our passion and drive </p>
-                            </div>
-                            <div class="col-3 nav_container">
-                                <a class="nav_content" href="{{route('services')}}">
-                                    <div class="d-flex align-items-center mb-3">
-                                        <figure class="mockup"><img src="assets/images/services/5b1a744a64dc8.png"
-                                                class="img-responsive mx-auto" alt="" style="max-height: 180px">
-                                        </figure>
-
-                                        <div class="flex-fill">
-                                            <h3 class="link-title m-0">Custom Cad App</h3>
-                                            <p class="m-0 text-secondary">Get to know </p>
-                                        </div>
-                                    </div>
-                                </a>
-                                <p>Our passion and drive </p>
-                            </div>
-                            <div class="col-3 nav_container">
-                                <a class="nav_content" href="{{route('services')}}">
-                                    <div class="d-flex align-items-center mb-3">
-                                        <figure class="mockup"><img src="assets/images/services/5b1a744a64dc8.png"
-                                                class="img-responsive mx-auto" alt="" style="max-height: 180px">
-                                        </figure>
-
-                                        <div class="flex-fill">
-                                            <h3 class="link-title m-0">Cloud Services</h3>
-                                            <p class="m-0 text-secondary">Get to know </p>
-                                        </div>
-                                    </div>
-                                </a>
-                                <p>Our passion and drive </p>
-                            </div>
-                            <div class="col-3 nav_container">
-                                <a class="nav_content" href="{{route('services')}}">
-                                    <div class="d-flex align-items-center mb-3">
-                                        <figure class="mockup"><img src="assets/images/services/5b1a744a64dc8.png"
-                                                class="img-responsive mx-auto" alt="" style="max-height: 180px">
-                                        </figure>
-
-                                        <div class="flex-fill">
-                                            <h3 class="link-title m-0">Colors</h3>
-                                            <p class="m-0 text-secondary">Get to know </p>
-                                        </div>
-                                    </div>
-                                </a>
-                                <p>Our passion and drive </p>
-                            </div>
+                                    </a>
+                                </div>
+                                @endif
+                            @endforeach
                         </div>
 
                     </div>
@@ -293,30 +163,30 @@
                     <div class="st-dropdown-content-group">
 
                         <div class="row">
-                            <div class="col-3 nav_container">
+                            <div class="col-4 nav_container">
                                 <a class="dropdown-item" href="{{route('introduction')}}">
                                     <h2 class="lead nav_content">Introduction</h2>
                                 </a>
-                                <p>Our passion and drive </p>
+
                             </div>
-                            <div class="col-3 nav_container">
+                            <div class="col-4 nav_container">
                                 <a class="dropdown-item" href="{{route('howWework')}}">
                                     <h2 class="lead nav_content">How we work</h2>
                                 </a>
-                                <p>Our passion and drive </p>
+
                             </div>
-                            <div class="col-3 nav_container">
+                            <div class="col-4 nav_container">
                                 <a class="dropdown-item" href="{{route('our_activity')}}">
                                     <h2 class="lead nav_content">Our Activities</h2>
                                 </a>
-                                <p>Our passion and drive </p>
+
                             </div>
-                            <div class="col-3 nav_container">
+                            {{-- <div class="col-4 nav_container">
                                 <a class="dropdown-item" href="{{route('blogs')}}">
-                                    <h2 class="lead nav_content">Blog</h2>
+                                    <h2 class="lead nav_content">content</h2>
                                 </a>
-                                <p>Our passion and drive </p>
-                            </div>
+
+                            </div> --}}
 
 
                         </div>

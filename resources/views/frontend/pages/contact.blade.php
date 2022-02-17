@@ -10,12 +10,11 @@
             <div class="row">
                 <div class="col-md-6 section_content">
                     <h1 class="bold display-md-4 text-contrast mb-4" data-aos="fade-up"
-                        data-aos-anchor-placement="center-center">Contact us</h1>
+                        data-aos-anchor-placement="center-center"> Contact us</h1>
                     <p class="lead text-contrast"> Get in
                         touch and let us know how we can help. Fill out the form
                         and we’ll be in touch as soon as possible.</p>
                 </div>
-
 
             </div>
         </div>
@@ -36,83 +35,97 @@
             <div class="row align-items-center gap-y">
                 <div class="col-md-6">
                     <div class="shadow bg-contrast p-4 rounded">
-                        <form action="https://5studios.net/themes/dashcore3/srv/contact.php" method="post"
-                            class="form form-contact" name="form-contact" data-response-message-animation="slide-in-up">
-                            <div class="mb-4"><label for="contact_email" class="text-dark bold mb-0">Email
-                                    address</label>
-                                <div id="emailHelp" class="small form-text text-secondary mt-0 mb-2 italic">We'll
-                                    never share your email with anyone else.</div><input type="email"
-                                    name="Contact[email]" id="contact_email" class="form-control bg-contrast"
-                                    placeholder="Valid Email" required>
+
+                        <form action="{{route('sendmail')}}" method="POST">
+                            @csrf
+
+                            @if($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach($errors->all() as $error)
+                                    <li>{{$error}}</li>
+                                    @endforeach
+                                </ul>
                             </div>
-                            <div class="mb-4"><label for="contact_email" class="text-dark bold">Subject</label>
-                                <input type="text" name="Contact[subject]" id="contact_subject"
-                                    class="form-control bg-contrast" placeholder="Subject" required>
+                            @endif
+
+
+                            @if(session()->has('success'))
+                            <div class="alert alert-success">
+                                {{session()->get('success')}}
                             </div>
-                            <div class="mb-4"><label for="contact_email" class="text-dark bold">Message</label>
-                                <textarea name="Contact[message]" id="contact_message" class="form-control bg-contrast"
-                                    placeholder="What do you want to let us know?" rows="8" required></textarea>
+                            @endif
+
+                            <div class="mb-4">
+                                <label for="name" class="text-dark bold">Name</label>
+                                <input type="text" name="name" id="" class="form-control bg-contrast" placeholder="name">
                             </div>
-                            <div class="d-grid gap-2"><button id="contact-submit" data-loading-text="Sending..."
-                                    name="submit" type="submit" class="btn btn-primary btn-rounded">Send
-                                    Message</button></div>
+
+                            <div class="mb-4">
+                                <label for="email" class="text-dark bold mb-0">Emailaddress</label>
+                                <input type="email" name="email" id="" class="form-control bg-contrast"
+                                    placeholder="Valid Email">
+                            </div>
+
+                            <div class="mb-4">
+                                <label for="phone" class="text-dark bold">Phone</label>
+                                <input type="tel" name="contact" id="" class="form-control bg-contrast"
+                                    placeholder="Phone no">
+                            </div>
+
+                            <div class="mb-4">
+                                <label for="contact_email" class="text-dark bold">Message</label>
+                                <textarea name="message" id="" class="form-control bg-contrast"
+                                    placeholder="What do you want to let us know?" rows="8">
+                                </textarea>
+                            </div>
+
+                            {{-- <div class="g-recaptcha" data-sitekey="6Lcvtn8eAAAAABbHDKn9twMOfWFZzkfj0EC_UYS-"></div>
+                            @error('g-recaptcha-response')
+
+                            @enderror --}}
+
+                            <div class="d-grid gap-2">
+                                <button id="" name="submit" type="submit"
+                                    class="btn btn-primary btn-rounded">Send
+                                    Message
+                                </button>
+                            </div>
+
                         </form>
-                        <div class="response-message">
-                            <div class="section-heading"><i class="fas fa-check font-lg"></i>
-                                <p class="font-md m-0">Thank you!</p>
-                                <p class="response">Your message has been send, we will contact you as soon as
-                                    possible.</p>
-                            </div>
-                        </div>
+
                     </div>
                 </div>
                 <div class="col-md-5 ms-md-auto">
                     <div class="d-flex mt-md-5"><i class="fas fa-map-marker font-l text-primary me-3"></i>
-                        <div class="flex-fill">123 Street St, Your City,<span class="d-block">YC Country</span>
+                        <div class="flex-fill">
+                            {{$office_info->address}}
                         </div>
                     </div>
                     <div class="d-flex my-4"><i class="fas fa-phone font-l text-primary me-3"></i>
-                        <div class="flex-fill"><span class="d-block"><a href="tel:+1-123-456-7890">(123)
-                                    456-7890</a></span> <span class="d-block"><a href="tel:+1-987-654-3201">(987)
-                                    654-3201</a></span></div>
+                        <div class="flex-fill"><span class="d-block">
+                            <a href="#">
+                                {{$office_info->phone_number}}
+                            </a>
+                        </div>
                     </div>
+
                     <div class="d-flex"><i class="fas fa-envelope font-l text-primary me-3"></i>
-                        <div class="flex-fill"><a href="mailto:support@5studios.net">support@5studios.net</a></div>
+                        <div class="flex-fill"><a href="mailto:support@5studios.net">  {{$office_info->email_address}}</a></div>
                     </div>
+
+
                     <hr class="my-4">
-                    <nav class="nav justify-content-center justify-content-md-start"><a href="#"
-                            class="btn btn-circle btn-secondary btn-sm me-3"><i class="fab fa-facebook"></i></a> <a
-                            href="#" class="btn btn-circle btn-secondary btn-sm me-3"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="btn btn-circle btn-secondary btn-sm"><i class="fab fa-instagram"></i></a>
+                    <nav class="nav justify-content-center justify-content-md-start">
+                        @foreach ($social_sites as $value)
+                            <a href="#" class="btn btn-circle btn-secondary btn-sm me-3 brand-{{$value->icon}}"><i class="{{$value->url}}"></i></a>
+                        @endforeach
                     </nav>
                 </div>
             </div>
         </div>
     </section><!-- ./Other contact channels -->
 
-    <section class="section b-b">
-        <div class="container">
-            <div class="row gap-y align-items-center text-center text-lg-start">
-                <div class="col-12 col-md-6 py-4 px-5 b-md-r"><i data-feather="dollar-sign" width="36" height="36"
-                        class="stroke-darker"></i> <a href="javascript:;"
-                        class="mt-4 text-darker d-flex align-items-center">
-                        <h4 class="me-3">Contact Sales</h4><i class="fas fa-long-arrow-alt-right"></i>
-                    </a>
-                    <p class="mt-4">Looking for a custom quote? need to tell us more about your project? or want a
-                        demonstration? drop us a line to <a href="mailto:support@5studios.net">sales@5studios.net</a>
-                    </p>
-                </div>
-                <div class="col-12 col-md-6 py-4 px-5"><i data-feather="life-buoy" width="36" height="36"
-                        class="stroke-darker"></i> <a href="javascript:;"
-                        class="mt-4 text-darker d-flex align-items-center">
-                        <h4 class="me-3">Technical Support</h4><i class="fas fa-long-arrow-alt-right"></i>
-                    </a>
-                    <p class="mt-4">Any question about how to integrate your product?. Don't fret, our geek team is
-                        ready for you at <a href="mailto:support@5studios.net">support@5studios.net</a></p>
-                </div>
-            </div>
-        </div>
-    </section><!-- ./Footer - Simple -->
 
 </main><!-- themeforest:js -->
 

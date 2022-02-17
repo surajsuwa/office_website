@@ -34,64 +34,28 @@
             <div class="row">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
                     <div class="isotop-classes-tab isotop-btn">
-                        <a href="#" data-filter="*" class="current">All</a>
-                        <a href="#" data-filter=".mobile_app"> Mobile Apps </a>
-                        <a href="#" data-filter=".technology"> Web Technology </a>
-                        <a href="#" data-filter=".graphics"> Graphics </a>
-                        <a href="#" data-filter=".Motion-graphics"> Motion Graphics </a>
-                        <a href="#" data-filter=".gis-application"> Gis Applications </a>
+                        @foreach ($works->unique('name') as $key => $value)
+                            <a href="#" data-filter=".value{{$value->category_id}}" class="<?=(0==$key)? 'current' : ''?>">{{$value->name}}</a>
+                        @endforeach
+
                     </div>
                 </div>
             </div>
             <div class="row featuredContainer gallery-wrapper">
-                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-12 mobile_app">
-                    <div class="gallery-box">
-                        <img src="assets/images/works/5b1fb37cdbc62.png" class="img-responsive" alt="gallery">
-                        <div class="gallery-content">
-                            <a href="img/gallery/6.jpg" class="zoom"><i class="fa fa-link" aria-hidden="true"></i></a>
+                @foreach ($works as $value)
+                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-12 value{{$value->category_id}}">
+                        <div class="gallery-box">
+                            <img src="{{get_image_path('workImage',$value->featured_image)}}" class="img-responsive" alt="gallery">
+                            <div class="gallery-content">
+                                <a href="img/gallery/6.jpg" class="zoom"><i class="fa fa-link" aria-hidden="true"></i></a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-12 mobile_app">
-                    <div class="gallery-box">
-                        <img src="assets/images/works/5b1fb37cdbc62.png" class="img-responsive" alt="gallery">
-                        <div class="gallery-content">
-                            <a href="img/gallery/6.jpg" class="zoom"><i class="fa fa-link" aria-hidden="true"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-12 mobile_app">
-                    <div class="gallery-box">
-                        <img src="assets/images/works/5b1fb37cdbc62.png" class="img-responsive" alt="gallery">
-                        <div class="gallery-content">
-                            <a href="img/gallery/6.jpg" class="zoom"><i class="fa fa-link" aria-hidden="true"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-12 mobile_app">
-                    <div class="gallery-box">
-                        <img src="assets/images/works/5b1fb37cdbc62.png" class="img-responsive" alt="gallery">
-                        <div class="gallery-content">
-                            <a href="img/gallery/6.jpg" class="zoom"><i class="fa fa-link" aria-hidden="true"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-12 technology">
-                    <div class="gallery-box">
-                        <img src="assets/images/works/5b167fae203a4.jpg" class="img-responsive" alt="gallery">
-                        <div class="gallery-content">
-                            <a href="img/gallery/6.jpg" class="zoom"><i class="fa fa-link" aria-hidden="true"></i></a>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
 
             </div>
         </div>
     </div>
-
-
-
-
-</main><!-- themeforest:js -->
+</main>
 
 @endsection

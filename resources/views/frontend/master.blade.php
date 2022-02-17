@@ -19,7 +19,12 @@
 
     </main>
 
+    <div id='toTop'><i class="fa fa-angle-up" aria-hidden="true"></i></div>
+
+    @yield('msg')
+
     @include('frontend.includes.footer1')
+
 
 </body>
 
